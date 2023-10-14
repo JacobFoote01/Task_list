@@ -1,35 +1,48 @@
 import TableHeader from './TableHeader'
 import AddButton from './AddButton'
 import TableRow from './TableRow'
+import Task from './Task'
 
 
 
-const TaskTable = () => {
+const TaskTable = ({data, setData}) => {
+    return (
+        <div>
+            {data.map((task, index) => (
+                <Task 
+                    key={index}
+                    index={index}
+                    task={task}
+                    data={data}
+                    setData={setData}
+                />
+            ))}
+        </div>
+    )
 
 
     
-    return (
-        <div>
-            <table>
+//     return (
+//         <div>
+//             <table>
 
-                <thead>
-                    <TableHeader />
-                </thead>
+//                 <thead>
+//                     <TableHeader />
+//                 </thead>
 
-                <tbody>
+//                 <tbody>
 
-                    <TableRow />
+//                     <TableRow />
 
-                </tbody>
+//                 </tbody>
         
-                <tfoot>
-                    <AddButton 
-                        //addClick={addRow}
-                    />
-                </tfoot>
-            </table>
-        </div>
-) 
+//                 <tfoot>
+//                     <AddButton 
+//                     />
+//                 </tfoot>
+//             </table>
+//         </div>
+// ) 
 }
 
 export default TaskTable 
