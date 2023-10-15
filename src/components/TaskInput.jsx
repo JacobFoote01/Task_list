@@ -1,18 +1,17 @@
 import React, { useState } from 'react'
+import * as api from '../api'
 
 export default function TaskInput({data, setData}) {
     const [taskValue, setTaskValue] = useState('')
     const [timeValue, setTimeValue] = useState('')
 
-    const addTask = () => {
+    const addTask = async () => {
       // create new task object
       const newTask = {
         description: taskValue,
         est_time: timeValue
       }
-      // create new array with existing data and new task
-      const newData = [...data, newTask]
-      console.log(newData)
+      const newData = await api.addTask(newTask)
       // update state
       setData(newData)
       // reset input values

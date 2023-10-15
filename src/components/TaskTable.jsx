@@ -8,7 +8,7 @@ import Task from './Task'
 const TaskTable = ({data, setData}) => {
     return (
         <div>
-            {data.map((task, index) => (
+            {data.length >= 1 && data.map((task, index) => (
                 <Task 
                     key={index}
                     index={index}

@@ -1,6 +1,8 @@
 import express from 'express'
 import ViteExpress from 'vite-express'
 import morgan from 'morgan'
+import * as controller from './controller.js'
+import  cors from 'cors'
 
 const app = express()
 
@@ -9,10 +11,22 @@ app.use(morgan('dev'))
 app.use(express.urlencoded({extended: false}))
 app.use(express.static('public'))
 app.use(express.json())
-
-import handlerFunctions from './controller.js'
+app.use(cors({
+  origin:'*'
+}))
 
 //routes go here
+// get all tasks
+app.get('/tasks', controller.getTasks)
+
+// add task
+app.post('/tasks', controller.addTask)
+
+// remove task
+app.delete('/tasks/:id', controller.removeTask)
+
+// edit task
+app.put('/tasks', controller.updateTask)
 
 //door to the server 
-ViteExpress.listen(app, 5173, () => console.log(`Welcome! Report to http://localhost:5173`))
+ViteExpress.listen(app, 3000, () => console.log(`Welcome! Report to http://localhost:5173`))

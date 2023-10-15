@@ -1,17 +1,14 @@
 import React, { useState } from 'react'
+import * as api from '../api'
 
 const Task = ({task, data, setData, index}) => {
   const { description, est_time } = task;
   const [isEditing, setIsEditing] = useState(false);
-  const [input, setInput] = useState({
-    description: task.description,
-    est_time: task.est_time,
-  });
+  const [input, setInput] = useState(task);
 
   // remove a task from the list
-  const removeTask = () => {
-    // filter out the task at the index
-    const newData = data.filter((task, i) => i !== index);
+  const removeTask = async () => {
+    const newData = await api.removeTask(task.id)
     // set the data to the new filtered data
     setData(newData);
   }
@@ -28,6 +25,23 @@ const Task = ({task, data, setData, index}) => {
     setIsEditing(true);
   }
 
+  // save the edited task
+  const saveTask = async () => {
+    const newData = await api.updateTask({
+      ...task,
+      description: input.description,
+      est_time: input.est_time
+    })
+
+    setData(newData)
+    setIsEditing(false)
+  }
+
+  const cancelEdit = () => {
+    setInput(task)
+    setIsEditing(false)
+  }
+
 
   return (
     <div className='task'>
@@ -35,8 +49,10 @@ const Task = ({task, data, setData, index}) => {
       {!isEditing && <p>{est_time}</p>}
       {isEditing && <input type="text" placeholder="description"  name="description" value={input.description} onChange={handleInputChange} />}
       {isEditing && <input type="text" placeholder="est_time"  name="est_time" value={input.est_time} onChange={handleInputChange} />}
-      <button onClick={editTask}>Edit</button>
-      <button onClick={removeTask}>Remove</button>
+      {!isEditing &&<button onClick={editTask}>Edit</button>}
+      {!isEditing && <button onClick={removeTask}>Remove</button>}
+      {isEditing && <button onClick={saveTask}>Save</button>}
+      {isEditing && <button onClick={cancelEdit}>Cancel</button>}
     </div>
   )
 }
