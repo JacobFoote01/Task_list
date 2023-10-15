@@ -1,13 +1,21 @@
 <head>
-<title>My Task List</title>
 </head>
+<br/>
 <body>
     <div>
+     <h1>
+        My Task List
+     </h1>
         <p>
-            My Task List app is a to-do list.
+            My Task List app is a to-do list with features that allow you to use it seamlessly 
         </p>
         <p> 
-            The app has some functionality with the list itself. There is an add button that will allow you add a new row to the list. There is an edit and remove button that will either edit the row that you are on or delete it.
+            - Add Button: Adds a new row to the list.
+            - Edit Button: Edits a row. 
+            - Remove Button: Deletes a row.
+            - Task input: Text box to label the task 
+            - Estimated Time input: Text box for the estimated time to complete the task 
         </p>
     </div>
+
 </body>
