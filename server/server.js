@@ -29,4 +29,4 @@ app.delete('/tasks/:id', controller.removeTask)
 app.put('/tasks', controller.updateTask)
 
 //door to the server 
-ViteExpress.listen(app, 3000, () => console.log(`Welcome! Report to http://localhost:5173`))
+ViteExpress.listen(app, 3000, () => console.log(`Welcome! Report to http://localhost:3000`))
